@@ -1,7 +1,10 @@
 package com.example.WeatherSensorProject.models;
 
-import jakarta.persistence.*;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,25 +15,23 @@ public class Measurement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public boolean isRaining() {// нужен ли?
+
+    public boolean isRaining() {
         return raining;
-    }
-    public void getRaining(boolean raining){
-        this.raining = raining;
     }
 
     public void setRaining(boolean raining) {
         this.raining = raining;
     }
 
-    @Column(name = "is_raining")
+    @Column(name = "raining")
     private boolean raining;
 
 
     @Column(name = "value")
     private double value;
 
-
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "created_at")
     private LocalDateTime created_at;
 

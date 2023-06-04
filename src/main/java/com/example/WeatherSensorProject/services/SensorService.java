@@ -3,20 +3,22 @@ package com.example.WeatherSensorProject.services;
 import com.example.WeatherSensorProject.models.Sensor;
 import com.example.WeatherSensorProject.models.SensorDTO;
 import com.example.WeatherSensorProject.repositories.SensorRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 
 @Service
-@Transactional(readOnly = true)
 public class SensorService {
 
     private final SensorRepository sensorRepository;
+    private ModelMapper modelMapper;
 
-@Autowired
+    @Autowired
     public SensorService(SensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
+        this.modelMapper = new ModelMapper();
     }
 
     public Sensor registerSensor(SensorDTO sensorDTO) {
@@ -24,9 +26,9 @@ public class SensorService {
             throw new IllegalArgumentException("Sensor with the given name already exists");
         }
 
-        Sensor sensor = new Sensor();
-        sensor.setName(sensor.getName());
-        sensorRepository.save(sensorDTO);
+        Sensor sensor = modelMapper.map(sensorDTO, Sensor.class);
+        sensorRepository.save(sensor);
+
         return sensor;
     }
 
@@ -35,7 +37,8 @@ public class SensorService {
     }
 
 
-//TODO: Исправить корректно ModelMapperом. Падает из за неверного использования dto как сущности.
-    //TODO:Там,где используешь dto прописывай mapper.Нужно пересмотреть использование sensor,sensorDTO
+
+
+
 
 }

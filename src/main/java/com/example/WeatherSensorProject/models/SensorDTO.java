@@ -1,9 +1,8 @@
 package com.example.WeatherSensorProject.models;
 
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class SensorDTO {
     @NotBlank(message = "Sensor name cannot be blank")

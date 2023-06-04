@@ -1,7 +1,7 @@
 package com.example.WeatherSensorProject.models;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sensor")
