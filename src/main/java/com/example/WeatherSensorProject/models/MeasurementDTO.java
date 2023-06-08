@@ -7,9 +7,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class MeasurementDTO {
-    @NotNull(message = "Value cannot be null")
-    @DecimalMin(value = "-100", message = "Value must be greater than or equal to -100")
-    @DecimalMax(value = "100", message = "Value must be less than or equal to 100")
+    @NotNull(message = "Value cannot be null")  //Аннотация, указывающая, что поле value не может быть null.
+    @DecimalMin(value = "-100", message = "Value must be greater than or equal to -100")//Аннотация,
+    // указывающая, что значение поля value должно быть больше или равно -100.
+    @DecimalMax(value = "100", message = "Value must be less than or equal to 100")//Аннотация,
+    // указывающая, что значение поля value должно быть меньше или равно 100.
     private Double value;
 
     @NotNull(message = "Raining field cannot be null")

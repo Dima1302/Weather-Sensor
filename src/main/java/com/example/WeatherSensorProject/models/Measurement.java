@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "measurements")
+@Entity // Аннотация, указывающая, что класс Measurement является сущностью (entity) базы данных.
+@Table(name = "measurements")//Аннотация, указывающая имя таблицы в базе данных, связанной с сущностью Measurement.
 public class Measurement {
     @Id
     @Column(name = "id")
@@ -20,17 +20,18 @@ public class Measurement {
         return raining;
     }
 
+
     public void setRaining(boolean raining) {
         this.raining = raining;
     }
-
+    // Поле, указывающее наличие осадков (дождя)
     @Column(name = "raining")
     private boolean raining;
 
-
+    // Поле для значения измерения
     @Column(name = "value")
-    private double value;
-
+    private Double value;
+    // Поле для хранения времени создания измерения
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "created_at")
     private LocalDateTime created_at;
@@ -42,15 +43,15 @@ public class Measurement {
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
-
+    // Связь "многие-к-одному" с сущностью Sensor
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sensor_id", nullable = false)
     private Sensor sensor;
 
     public Measurement() {
-
+// Конструктор без параметров
     }
-
+    // Геттеры и сеттеры для полей
     public int getId() {
         return id;
     }

@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController // @Controller + @ResponseBody над каждым методом
+@RestController
 @RequestMapping("/api")
 public class FirstRESTController {
 
+    // Обработчик GET-запроса для пути "/api/sayHello"
     @GetMapping("/sayHello")
     public String sayHello() {
          return "Hello world!";

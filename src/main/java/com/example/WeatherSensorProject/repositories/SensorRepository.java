@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * @author Neil Alishev
  */
-@Repository
+@Repository// репозиторий для сущности Sensor
 public interface SensorRepository extends JpaRepository<Sensor, Integer> {
     Optional<Sensor> findByName(String name);
     void save(SensorDTO sensorDTO);

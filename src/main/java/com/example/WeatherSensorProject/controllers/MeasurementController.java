@@ -18,7 +18,7 @@ public class MeasurementController {
     public MeasurementController(MeasurementService measurementService) {
         this.measurementService = measurementService;
     }
-
+    // POST-запрос для пути "/measurements/add"
     @PostMapping("/add")
     public ResponseEntity<?> addMeasurement(@Valid @RequestBody MeasurementDTO measurementDTO) {
         try {
@@ -28,13 +28,13 @@ public class MeasurementController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    //GET-запрос для пути "/measurements/getAllMeasurements"
     @GetMapping("/getAllMeasurements")
     public ResponseEntity<List<Measurement>> getAllMeasurements() {
         List<Measurement> measurements = measurementService.getAllMeasurements();
         return ResponseEntity.ok().body(measurements);
     }
-
+    //GET-запрос для пути /measurements/rainyDaysCount
     @GetMapping("/rainyDaysCount")
     public ResponseEntity<Long> getRainyDaysCount() {
         long count = measurementService.getRainyDaysCount();

@@ -23,6 +23,7 @@ public class MeasurementService {
         this.measurementRepository = measurementRepository;
         this.sensorRepository = sensorRepository;
     }
+    //Метод, который добавляет новую запись из объекта MeasurementDTO в базу данных.
     @Transactional
     public Measurement addMeasurement(MeasurementDTO measurementDTO) {
         String sensorName = measurementDTO.getSensor();
@@ -37,11 +38,11 @@ public class MeasurementService {
 
         return measurementRepository.save(measurement);
     }
-
+//Метод, который возвращает все записи Measurement из базы данных.
     public List<Measurement> getAllMeasurements() {
         return measurementRepository.findAll();
     }
-
+// Метод, который возвращает количество дождливых дней (записей) в базе данных.
     public long getRainyDaysCount() {
         return measurementRepository.countByRaining(true);
     }

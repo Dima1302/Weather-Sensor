@@ -20,18 +20,20 @@ public class SensorService {
         this.sensorRepository = sensorRepository;
         this.modelMapper = new ModelMapper();
     }
+    //Метод, который регистрирует новый датчик на основе объекта SensorDTO.
 
     public Sensor registerSensor(SensorDTO sensorDTO) {
-        if (sensorRepository.findByName(sensorDTO.getName()).isPresent()) {
+        if (sensorRepository.findByName(sensorDTO.getName()).isPresent()) { //Проверка, существует ли датчик с таким именем в базе данных.
+            // Если датчик с таким именем уже существует, генерируется исключение.
             throw new IllegalArgumentException("Sensor with the given name already exists");
         }
 
-        Sensor sensor = modelMapper.map(sensorDTO, Sensor.class);
+        Sensor sensor = modelMapper.map(sensorDTO, Sensor.class);//Маппинг объекта SensorDTO на объект Sensor с помощью ModelMapper.
         sensorRepository.save(sensor);
 
         return sensor;
     }
-
+// Метод, который проверяет, зарегистрирован ли датчик с указанным именем в базе данных.
     public boolean isSensorRegistered(String sensorName) {
         return sensorRepository.existsByName(sensorName);
     }
